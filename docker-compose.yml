@@ -1,0 +1,36 @@
+version: '3.8'
+
+# Selenium Grid local pour exécuter les tests en parallèle sans installer Chrome
+# Usage : docker-compose up -d → mvn test -DHEADLESS=true
+
+services:
+
+  selenium-hub:
+    image: selenium/hub:4.18.1
+    container_name: selenium-hub
+    ports:
+      - "4442:4442"
+      - "4443:4443"
+      - "4444:4444"
+    environment:
+      - GRID_MAX_SESSION=5
+      - GRID_BROWSER_TIMEOUT=300
+      - GRID_TIMEOUT=300
+
+  chrome-node:
+    image: selenium/node-chrome:4.18.1
+    container_name: chrome-node
+    shm_size: 2gb
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - SE_NODE_MAX_SESSIONS=3
+      - SE_NODE_OVERRIDE_MAX_SESSIONS=true
+    volumes:
+      - /dev/shm:/dev/shm
+
+  # Selenium Grid UI — visualise les sessions en cours
+  # Accessible sur http://localhost:4444/ui
