@@ -83,4 +83,4 @@ docker compose down
 ## Auteur
 
 **Fatima El Madini** — Senior Test Automation Engineer  
-[LinkedIn](https://linkedin.com/in/yourprofile) · [Malt](https://malt.fr/profile/yourprofile) · [Portfolio projet 1](https://github.com/MadiFati/selenium-e2e-framework)
+[LinkedIn](https://www.linkedin.com/in/fatimazahra-el-madini-58352210b/) · [Malt](https://malt.fr/profile/yourprofile)· [Portfolio projet 1](https://github.com/MadiFati/selenium-e2e-framework)
